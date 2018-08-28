@@ -9,13 +9,32 @@ GAME RULES:
 
 */
 
+/*
+
+***** 
+LECTURE 48 CODE
+****** 
+
+*/
+
 /* Variables */
 var scores, roundScore, activePlayer, dice;
 
-scores = [0,0];
-roundScore = 0;
+scores = [0,0]; //global (total) scores
+roundScore = 0; //current score
 activePlayer = 0; //0 = First Player, 1 = Second Player
 
 //Generate random dice number
-dice = Math.floor(Math.random() * 6); //0 to 5
+dice = Math.floor(Math.random() * 6)+1; //1 to 6
+
+//querySelector: Selects the first instance of the stated element
+//textContent: The text content of a nodes AND descendants - MDN
+//innerHTML: used to set the HTML of an element, unlike textContent
+document.querySelector('#current-'+activePlayer).textContent = dice;
+
+var currentScore = document.querySelector('#current-'+activePlayer);
+var totalScore = document.querySelector('#score-'+activePlayer);
+
+//Changing the style: element.style.CSSPropertyHere = 'CSSValueHere'
+document.querySelector('.dice').style.display = 'none';
 
