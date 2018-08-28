@@ -1,0 +1,28 @@
+Hour 1
+Learned about Method Borrowing, from the 'this' keyword.
+Finished 'Section 3' of the course, began section 4: JavaScript in the Browser: DOM Manipulation and Events.
+Reviewed the DOM briefly.
+Wrote notes on the project to be worked on.
+Started project by set up basic variables.
+Next: generate a random number for the dice.
+
+Hour 2
+Generated random number, covered querySelector, textContent and innerHTML methods. Learned how to manipulate CSS using the style function.
+Lecture 48 finished here.
+Started Lec. 49. Covered events and event listeners, how events are processed, callback functions and anon. functions.
+Started writing an event listener and its function.
+Next: carry on with writing the event listener.
+
+Hour 3
+Manipulated DOM to change the dice image.
+Added event listeners to the 'Roll Dice' and 'Hold' button.
+Roll Dice: Keeps adding onto the score until player rolls a 1, which then resets score and changes player.
+Hold: Saves the current player score and changes player.
+
+Hour 4
+Reviewed solution to the 'hold' button, cleaned up code.
+Practiced removing/adding classes when setting the winner of the game.
+Placed common code inside a function to be called when necessary.
+Created initalising variable.
+
+For tomorrow: continue on Lecture 52 about more information regarding Game Initialisation.
