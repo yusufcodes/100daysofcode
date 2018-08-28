@@ -54,8 +54,80 @@ function()
 
     //Display dice value
     var diceDOM = document.querySelector('.dice');
-    diceDOM.style.display = 'block';
-    diceDOM.src = 'images/dice-'+dice+'.png';
+
+    //Lecture 50 code
+
+    diceDOM.style.display = 'block'; //unihde the dice
+    diceDOM.src = 'images/dice-'+dice+'.png'; //set dice image using src property
+
+    var currentScore = document.getElementById('current-'+activePlayer);
+
+    if (dice !== 1)
+    {
+        roundScore += dice;
+        currentScore.textContent = roundScore;      
+    }
+    else
+    {
+        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+        roundScore = 0;
+        currentScore.textContent = roundScore;
+
+        document.querySelector('.player-0-panel').classList.toggle('active');
+        document.querySelector('.player-1-panel').classList.toggle('active');
+
+        // document.querySelector('.player-0-panel').classList.remove('active');
+
+        // if (activePlayer === 0)
+        // {
+        //     document.querySelector('.player-0-panel').classList.remove('active');
+        //     document.querySelector('.player-1-panel').classList.add('active');
+        //     activePlayer = 1;
+        // }
+        // else
+        // {
+        //     document.querySelector('.player-1-panel').classList.remove('active');
+        //     document.querySelector('.player-0-panel').classList.add('active');
+        //     activePlayer = 0;
+        // }
+    }
 
 });
 
+/* //if user clicks hold:
+    
+    -scores[activePlayer] += roundScore
+    -Reset roundScore
+    -Change to the next player
+*/
+
+document.querySelector('.btn-hold').addEventListener('click',
+function()
+{
+    var currentScore = document.getElementById('current-'+activePlayer);
+    var totalScore = document.getElementById('score-'+activePlayer);
+
+    scores[activePlayer] += roundScore;
+    currentScore.textContent = 0;
+    roundScore = 0;
+    totalScore.textContent = scores[activePlayer];
+
+    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+
+    // if (activePlayer === 0)
+    //     {
+    //         document.querySelector('.player-0-panel').classList.remove('active');
+    //         document.querySelector('.player-1-panel').classList.add('active');
+    //         activePlayer = 1;
+    //     }
+    //     else
+    //     {
+    //         document.querySelector('.player-1-panel').classList.remove('active');
+    //         document.querySelector('.player-0-panel').classList.add('active');
+    //         activePlayer = 0;
+    //     }
+
+});
