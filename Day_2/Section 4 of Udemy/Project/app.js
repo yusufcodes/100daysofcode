@@ -24,17 +24,18 @@ scores = [0,0]; //global (total) scores
 roundScore = 0; //current score
 activePlayer = 0; //0 = First Player, 1 = Second Player
 
-
-
 //querySelector: Selects the first instance of the stated element
 //textContent: The text content of a nodes AND descendants - MDN
 //innerHTML: used to set the HTML of an element, unlike textContent
 
-
-var currentScore = document.querySelector('#current-'+activePlayer);
-var totalScore = document.querySelector('#score-'+activePlayer);
+for (let i=0; i<2; i++)
+{
+    document.getElementById('score-'+i).textContent = 0;
+    document.getElementById('current-'+i).textContent = 0;
+}
 
 //Changing the style: element.style.CSSPropertyHere = 'CSSValueHere'
+//Initially, dice is hidden
 document.querySelector('.dice').style.display = 'none';
 
 /*
@@ -52,20 +53,9 @@ function()
     var dice = Math.floor(Math.random() * 6)+1; //1 to 6
 
     //Display dice value
-    document.querySelector('.dice').style.display = 'block';
+    var diceDOM = document.querySelector('.dice');
+    diceDOM.style.display = 'block';
+    diceDOM.src = 'images/dice-'+dice+'.png';
 
-    //Update round count - IF not equal to 1
-    if (dice !== 1)
-    {
-        //Update round score
-    }
-
-    else
-    {
-
-    }
-
-
-}
-);
+});
 
