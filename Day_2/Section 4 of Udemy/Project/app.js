@@ -69,65 +69,34 @@ function()
     }
     else
     {
-        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
-        roundScore = 0;
-        currentScore.textContent = roundScore;
-
-        document.querySelector('.player-0-panel').classList.toggle('active');
-        document.querySelector('.player-1-panel').classList.toggle('active');
-
-        // document.querySelector('.player-0-panel').classList.remove('active');
-
-        // if (activePlayer === 0)
-        // {
-        //     document.querySelector('.player-0-panel').classList.remove('active');
-        //     document.querySelector('.player-1-panel').classList.add('active');
-        //     activePlayer = 1;
-        // }
-        // else
-        // {
-        //     document.querySelector('.player-1-panel').classList.remove('active');
-        //     document.querySelector('.player-0-panel').classList.add('active');
-        //     activePlayer = 0;
-        // }
+        nextPlayer();
     }
 
 });
 
-/* //if user clicks hold:
-    
-    -scores[activePlayer] += roundScore
-    -Reset roundScore
-    -Change to the next player
-*/
-
 document.querySelector('.btn-hold').addEventListener('click',
 function()
 {
-    var currentScore = document.getElementById('current-'+activePlayer);
-    var totalScore = document.getElementById('score-'+activePlayer);
-
     scores[activePlayer] += roundScore;
-    currentScore.textContent = 0;
-    roundScore = 0;
-    totalScore.textContent = scores[activePlayer];
+    document.getElementById('score-'+activePlayer).textContent = scores[activePlayer];
+    nextPlayer();
+});
 
+
+function nextPlayer()
+{
+    //Changes the current active player and resets the score for the round
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+    roundScore = 0;
 
+    //Resets current round text on screen
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+
+    //Toggles one as active and the other as inactive
     document.querySelector('.player-0-panel').classList.toggle('active');
     document.querySelector('.player-1-panel').classList.toggle('active');
 
-    // if (activePlayer === 0)
-    //     {
-    //         document.querySelector('.player-0-panel').classList.remove('active');
-    //         document.querySelector('.player-1-panel').classList.add('active');
-    //         activePlayer = 1;
-    //     }
-    //     else
-    //     {
-    //         document.querySelector('.player-1-panel').classList.remove('active');
-    //         document.querySelector('.player-0-panel').classList.add('active');
-    //         activePlayer = 0;
-    //     }
-
-});
+    //Hides the dice
+    document.querySelector('.dice').style.display = 'none';
+}
