@@ -20,6 +20,8 @@ LECTURE 48 CODE
 /* Variables */
 var scores, roundScore, activePlayer;
 
+init();
+
 scores = [0,0]; //global (total) scores
 roundScore = 0; //current score
 activePlayer = 0; //0 = First Player, 1 = Second Player
@@ -28,15 +30,9 @@ activePlayer = 0; //0 = First Player, 1 = Second Player
 //textContent: The text content of a nodes AND descendants - MDN
 //innerHTML: used to set the HTML of an element, unlike textContent
 
-for (let i=0; i<2; i++)
-{
-    document.getElementById('score-'+i).textContent = 0;
-    document.getElementById('current-'+i).textContent = 0;
-}
-
 //Changing the style: element.style.CSSPropertyHere = 'CSSValueHere'
 //Initially, dice is hidden
-document.querySelector('.dice').style.display = 'none';
+
 
 /*
 
@@ -86,8 +82,6 @@ function()
         document.querySelector('.dice').style.display = 'none';
         document.querySelector('.player-' + activePlayer +'-panel').classList.add('winner');
         document.querySelector('.player-' + activePlayer +'-panel').classList.remove('active');
-
-
     }
 
     else
@@ -115,4 +109,25 @@ function nextPlayer()
 
     //Hides the dice
     document.querySelector('.dice').style.display = 'none';
+}
+
+document.querySelector('.btn-new').addEventListener('click',
+function()
+{
+    init();
+});
+
+function init()
+{
+    scores = [0,0];
+    activePlayer = 0;
+    roundScore = 0;
+
+    document.querySelector('.dice').style.display = 'none';
+
+    for (let i=0; i<2; i++)
+    {
+        document.getElementById('score-'+i).textContent = '0';
+        document.getElementById('current-'+i).textContent = '0';
+    }
 }
