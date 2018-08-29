@@ -41,7 +41,9 @@ function()
         { 
             console.log("You rolled a "+dice+" twice in a row!");
             scores[activePlayer] = 0;
+            document.getElementById('score-'+activePlayer).textContent = scores[activePlayer];
             nextPlayer();
+            //Reset global score?
         }
 
         else
