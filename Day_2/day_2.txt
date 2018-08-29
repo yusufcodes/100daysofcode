@@ -1,3 +1,4 @@
+Focus: The Complete JavaScript Course - Udemy
 Hour 1
 Learned about Method Borrowing, from the 'this' keyword.
 Finished 'Section 3' of the course, began section 4: JavaScript in the Browser: DOM Manipulation and Events.

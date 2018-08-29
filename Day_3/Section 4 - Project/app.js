@@ -18,76 +18,80 @@ LECTURE 48 CODE
 */
 
 /* Variables */
-var scores, roundScore, activePlayer;
+var scores, roundScore, activePlayer, gamePlaying, previousDiceRoll;
 
 init();
 
 scores = [0,0]; //global (total) scores
 roundScore = 0; //current score
 activePlayer = 0; //0 = First Player, 1 = Second Player
-
-//querySelector: Selects the first instance of the stated element
-//textContent: The text content of a nodes AND descendants - MDN
-//innerHTML: used to set the HTML of an element, unlike textContent
-
-//Changing the style: element.style.CSSPropertyHere = 'CSSValueHere'
-//Initially, dice is hidden
-
-
-/*
-
-***** 
-LECTURE 49 CODE
-****** 
-
-*/
+previousDiceRoll = 0;
 
 document.querySelector('.btn-roll').addEventListener('click',
 function()
 {
-    //Generate random dice number
-    var dice = Math.floor(Math.random() * 6)+1; //1 to 6
-
-    //Display dice value
-    var diceDOM = document.querySelector('.dice');
-
-    //Lecture 50 code
-
-    diceDOM.style.display = 'block'; //unihde the dice
-    diceDOM.src = 'images/dice-'+dice+'.png'; //set dice image using src property
-
-    var currentScore = document.getElementById('current-'+activePlayer);
-
-    if (dice !== 1)
+    if(gamePlaying)
     {
-        roundScore += dice;
-        currentScore.textContent = roundScore;      
-    }
-    else
-    {
-        nextPlayer();
-    }
 
+        var currentScore = document.getElementById('current-'+activePlayer);
+        //Generate random dice number
+        var dice = Math.floor(Math.random() * 6)+1; //1 to 6
+
+        if (dice === previousDiceRoll && dice === 6)
+        { 
+            console.log("You rolled a "+dice+" twice in a row!");
+            scores[activePlayer] = 0;
+            nextPlayer();
+        }
+
+        else
+        {
+            //Display dice value
+            var diceDOM = document.querySelector('.dice');
+
+            //Lecture 50 code
+
+            diceDOM.style.display = 'block'; //unihde the dice
+            diceDOM.src = 'images/dice-'+dice+'.png'; //set dice image using src property
+
+            if (dice !== 1)
+            {
+                previousDiceRoll = dice;
+                roundScore += dice;
+                currentScore.textContent = roundScore; 
+            }
+            else
+            {
+                nextPlayer();
+            }
+        }
+    }
 });
 
 document.querySelector('.btn-hold').addEventListener('click',
 function()
 {
-    scores[activePlayer] += roundScore;
-    document.getElementById('score-'+activePlayer).textContent = scores[activePlayer];
-
-    if (scores[activePlayer] >= 20)
+    if(gamePlaying)
     {
-        document.querySelector('#name-'+activePlayer).textContent = 'Winner!';
-        document.querySelector('.dice').style.display = 'none';
-        document.querySelector('.player-' + activePlayer +'-panel').classList.add('winner');
-        document.querySelector('.player-' + activePlayer +'-panel').classList.remove('active');
-    }
+        scores[activePlayer] += roundScore;
+        document.getElementById('score-'+activePlayer).textContent = scores[activePlayer];
 
-    else
-    {
-        nextPlayer();
+        if (scores[activePlayer] >= 20)
+        {
+            document.querySelector('#name-'+activePlayer).textContent = 'Winner!';
+            document.querySelector('.dice').style.display = 'none';
+            document.querySelector('.player-' + activePlayer +'-panel').classList.add('winner');
+            document.querySelector('.player-' + activePlayer +'-panel').classList.remove('active');
+            gamePlaying = false;
+        }
+
+        else
+        {
+            nextPlayer();
+        }
+
     }
+    
 
     
 });
@@ -98,6 +102,7 @@ function nextPlayer()
     //Changes the current active player and resets the score for the round
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
     roundScore = 0;
+    previousDiceRoll = 0;
 
     //Resets current round text on screen
     document.getElementById('current-0').textContent = '0';
@@ -111,17 +116,15 @@ function nextPlayer()
     document.querySelector('.dice').style.display = 'none';
 }
 
-document.querySelector('.btn-new').addEventListener('click',
-function()
-{
-    init();
-});
+document.querySelector('.btn-new').addEventListener('click', init);
 
 function init()
 {
     scores = [0,0];
     activePlayer = 0;
     roundScore = 0;
+    previousDiceRoll = 0;
+    gamePlaying = true;
 
     document.querySelector('.dice').style.display = 'none';
 
@@ -129,5 +132,12 @@ function init()
     {
         document.getElementById('score-'+i).textContent = '0';
         document.getElementById('current-'+i).textContent = '0';
+
+        document.getElementById('name-'+i).textContent = 'Player '+(i+1);
+        document.querySelector('.player-'+i+'-panel').classList.remove('winner');
+        document.querySelector('.player-'+i+'-panel').classList.remove('active');
+        
     }
+
+    document.querySelector('.player-0-panel').classList.add('active');
 }
