@@ -22,9 +22,6 @@ var scores, roundScore, activePlayer, gamePlaying, previousDiceRoll;
 
 init();
 
-scores = [0,0]; //global (total) scores
-roundScore = 0; //current score
-activePlayer = 0; //0 = First Player, 1 = Second Player
 previousDiceRoll = 0;
 
 document.querySelector('.btn-roll').addEventListener('click',
@@ -32,8 +29,6 @@ function()
 {
     if(gamePlaying)
     {
-
-        var currentScore = document.getElementById('current-'+activePlayer);
         //Generate random dice number
         var dice = Math.floor(Math.random() * 6)+1; //1 to 6
 
@@ -43,7 +38,7 @@ function()
             scores[activePlayer] = 0;
             document.getElementById('score-'+activePlayer).textContent = scores[activePlayer];
             nextPlayer();
-            //Reset global score?
+
         }
 
         else
@@ -125,7 +120,9 @@ function init()
     scores = [0,0];
     activePlayer = 0;
     roundScore = 0;
+
     previousDiceRoll = 0;
+
     gamePlaying = true;
 
     document.querySelector('.dice').style.display = 'none';
