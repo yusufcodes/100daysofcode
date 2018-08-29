@@ -36,35 +36,34 @@ function()
         //Generate random dice number
         var dice = Math.floor(Math.random() * 6)+1; //1 to 6
 
-        if (dice === previousDiceRoll && dice === 6)
-        { 
-            console.log("You rolled a "+dice+" twice in a row!");
-            scores[activePlayer] = 0;
-            document.getElementById('score-'+activePlayer).textContent = scores[activePlayer];
-            nextPlayer();
+        var dice2 = Math.floor(Math.random() * 6)+1;
 
+        // if (dice === previousDiceRoll && dice === 6)
+        // { 
+        //     console.log("You rolled a "+dice+" twice in a row!");
+        //     scores[activePlayer] = 0;
+        //     document.getElementById('score-'+activePlayer).textContent = scores[activePlayer];
+        //     nextPlayer();
+        // }
+
+
+        //Lecture 50 code
+
+        document.querySelector('.dice').style.display = 'block'; //unihde the dice
+        document.querySelector('.dice.secondDice').style.display = 'block';
+
+        document.querySelector('.dice').src = 'images/dice-'+dice+'.png'; //set dice image using src property
+        document.querySelector('.dice.secondDice').src = 'images/dice-'+dice2+'.png';
+
+
+        if (dice !== 1 && dice2 != 2)
+        {
+            roundScore += dice+dice2;
+            document.querySelector('#current-'+activePlayer).textContent = roundScore; 
         }
-
         else
         {
-            //Display dice value
-            var diceDOM = document.querySelector('.dice');
-
-            //Lecture 50 code
-
-            diceDOM.style.display = 'block'; //unihde the dice
-            diceDOM.src = 'images/dice-'+dice+'.png'; //set dice image using src property
-
-            if (dice !== 1)
-            {
-                previousDiceRoll = dice;
-                roundScore += dice;
-                document.querySelector('#current-'+activePlayer).textContent = roundScore; 
-            }
-            else
-            {
-                nextPlayer();
-            }
+            nextPlayer();
         }
     }
 });
@@ -94,6 +93,7 @@ function()
         {
             document.querySelector('#name-'+activePlayer).textContent = 'Winner!';
             document.querySelector('.dice').style.display = 'none';
+            document.querySelector('.dice.secondDice').style.display = 'none';
             document.querySelector('.player-' + activePlayer +'-panel').classList.add('winner');
             document.querySelector('.player-' + activePlayer +'-panel').classList.remove('active');
             gamePlaying = false;
@@ -125,6 +125,7 @@ function nextPlayer()
 
     //Hides the dice
     document.querySelector('.dice').style.display = 'none';
+    document.querySelector('.dice.secondDice').style.display = 'none';
 }
 
 document.querySelector('.btn-new').addEventListener('click', init);
@@ -140,6 +141,7 @@ function init()
     gamePlaying = true;
 
     document.querySelector('.dice').style.display = 'none';
+    document.querySelector('.dice.secondDice').style.display = 'none';
 
     for (let i=0; i<2; i++)
     {
