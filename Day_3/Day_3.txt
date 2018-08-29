@@ -1,0 +1,43 @@
+Hour 1
+
+Started on: Section 4 Lecture 52 - creating game initialisation.
+
+Finished the PIG game, now onto the 'coding challenge 6' which has 3 parts.
+
+In the middle of coding challenge 1.
+
+
+
+Hour 2
+
+Carrying on with coding challenge 1.
+
+Finished challenge 1, now checking solution.
+
+Started Coding Challenge 2.
+
+Struggled with challenge: how would we save the user's input, and change the value in JavaScript, without refreshing the page? (user value would be lost) - making notes as I follow solution to problem.
+
+Problem solved: this function needed to occur each time the user clicked 'hold' button, which I didn't think about previously.
+
+Started Coding Challenge 3
+
+
+
+Hour 3
+
+Coding Challenge 3 continued.
+
+Completed coding challenge 3.
+
+Consolidated knowledge of Section 4 by reading notes.
+
+
+
+Hour 4
+
+Started Section 5: Advanced JavaScript - Objects and Functions
+
+Made notes on the following topics: OOP, Constructors, Instances, Inheritance, Prototype and the Prototype Chain.
+
+Wrote code to learn how to write a function constructor and then create an instance of the object.
