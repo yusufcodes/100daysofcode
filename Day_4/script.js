@@ -95,6 +95,7 @@ var retirementGermany = retirement(65);
 var retirementIceland = retirement(67);
 */
 
+/*
 function interviewQuestions(job)
 {
     return function(name)
@@ -115,4 +116,43 @@ function interviewQuestions(job)
         console.log(name+", "+question);
     }
 }
-interviewQuestions('teacher')('Yusuf');
+interviewQuestions('teacher')('Yusuf'); */
+
+//Lecture: Bind, Call and Apply.
+
+var john = 
+{
+    name: 'John',
+    age: 26,
+    job: 'teacher',
+    presentation: function(style, timeofDay)
+    {
+        if (style === 'formal')
+        {
+            console.log('Good '+timeofDay+', Ladies and Gentleman! I\'m ' + this.name + ', I\'m a '+this.job+', and I\'m '+this.age+ ' years old.');
+        }
+
+        else if (style === 'friendly')
+        {
+            console.log('Hey there! I\'m ' + this.name + ', I\'m a '+this.job+', and I\'m '+this.age+ ' years old. Have a nice '+timeofDay);
+        }
+    }
+};
+
+var emily = 
+{
+    name: 'Emily',
+    age: 35,
+    job: 'designer'
+};
+
+//Call
+john.presentation('formal', 'morning');
+john.presentation.call(emily, 'friendly', 'afternoon');
+
+//Bind
+var johnFriendly = john.presentation.bind(john, 'friendly');
+johnFriendly('morning');
+
+var emilyFormal = john.presentation.bind(emily, 'formal');
+emilyFormal('afternoon');
