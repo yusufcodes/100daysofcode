@@ -76,10 +76,8 @@ game();*/
         console.log(score >= 5);
     }
 ) (); */
-
-//Closures
-
 /*
+//Closures
 function retirement(retirementAge)
 {
     var a = ' years left until retirement';
@@ -90,10 +88,18 @@ function retirement(retirementAge)
     }
 }
 
-var retirementUS = retirement(66);
-var retirementGermany = retirement(65);
-var retirementIceland = retirement(67);
+retirement(66)(1999);
 */
+
+
+
+
+
+
+
+
+
+
 
 /*
 function interviewQuestions(job)
@@ -156,3 +162,38 @@ johnFriendly('morning');
 
 var emilyFormal = john.presentation.bind(emily, 'formal');
 emilyFormal('afternoon');
+
+//Bind in practice
+var years = [1990, 1965, 1937, 2005, 1998];
+
+//Loops through given array, applies the given function, and returns the result of these operations.
+function arrayCalc(arr, fn)
+{
+    var arrRes = [];
+
+    for (var i=0; i < arr.length; i++)
+    {
+        arrRes.push( fn(arr[i]) );
+    }
+
+    return arrRes;
+}
+
+function calculateAge(el)
+{
+    return 2018 - el;
+}
+
+function isFullAge(limit, el)
+{
+    return el >= limit;
+}
+
+//PROBLEM: The original function only takes one parameter, arr[i].
+//But here, we want to *also* pass in a parameter 'limit'
+//SOLUTION: Pass the function in as a binded function so limit argument is filled.
+var ages = arrayCalc(years, calculateAge);
+var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+console.log(ages);
+console.log(fullJapan);
+
