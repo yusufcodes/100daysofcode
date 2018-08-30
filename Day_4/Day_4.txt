@@ -1,1 +1,5 @@
 Date: Thursday 30th August
+
+Hour 1
+Inspected the prototype chain in the chrome console
+Each object has a '__proto__' dropdown, which is the prototype of that object.
