@@ -35,6 +35,7 @@ john.calculateAge();
 console.log(john.lastName);*/
 
 //Lecture 63: Object.create
+/*
 var personProto = 
 {
     calculateAge: function()
@@ -50,7 +51,7 @@ var jane = Object.create(personProto,
     name: {value: 'Jane'},
     yearOfBirth: {value: 1969},
     job: {value:'designer'}
-});
+}); */
 
 //Object.create - object built as it inherits directly from the object passed into it
 //Function constructor - Inherits from the constructors prototype property
@@ -58,11 +59,35 @@ var jane = Object.create(personProto,
 
 //IIFE - Lecture 67
 //Normal function
-
+/*
 function game()
 {
     var score = Math.random() * 10;
     console.log(score >= 5);
 }
 
-game();
+game();*/
+
+//IIFE
+/*
+( function()
+    {
+        var score = Math.random() * 10;
+        console.log(score >= 5);
+    }
+) (); */
+
+//Closures
+
+function retirement(retirementAge)
+{
+    var a = ' years left until retirement';
+    return function(yearOfBirth)
+    {
+        var age = 2018 - yearOfBirth;
+        console.log((retirementAge - age) + a);
+    }
+}
+
+var retirementUS = retirement(66);
+retirementUS(1990);

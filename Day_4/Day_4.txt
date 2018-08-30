@@ -5,4 +5,16 @@ Inspected the prototype chain in the chrome console
 Each object has a '__proto__' dropdown, which is the prototype of that object.
 Finished Lecture 62 'The Prototype Chain in the Console'
 Finished Lecture 63 'Creating Objects - Object.create()'
+Finished Lecture 64 'Primitives vs Objects'
+Moved on from Objects to Functions
+Finished Lecture 65 'First Class Functions - Passing Functions as Arguments'
+
+Hour 2
+Finished Lecture 66 'First Class Functions - Returning Functions from Functions'
+No notes made on Lec. 65 and 66 as it felt basic.
+Completed Lecture 67 'IIFE', made notes on what it is and why it works.
+Midway through Lecture 68 on Closures. Made notes on theory: what it is and why it works.
+Next hour: carry on with lecture, which will go over the uses of closures.
+
+Hour 3
 
