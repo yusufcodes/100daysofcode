@@ -56,4 +56,13 @@ var jane = Object.create(personProto,
 //Function constructor - Inherits from the constructors prototype property
 //So: .create allows you to specify exactly where to inherit from
 
+//IIFE - Lecture 67
+//Normal function
 
+function game()
+{
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+}
+
+game();
