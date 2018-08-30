@@ -79,6 +79,7 @@ game();*/
 
 //Closures
 
+/*
 function retirement(retirementAge)
 {
     var a = ' years left until retirement';
@@ -90,4 +91,28 @@ function retirement(retirementAge)
 }
 
 var retirementUS = retirement(66);
-retirementUS(1990);
+var retirementGermany = retirement(65);
+var retirementIceland = retirement(67);
+*/
+
+function interviewQuestions(job)
+{
+    return function(name)
+    {
+        var question;
+        if (job === 'designer')
+        {
+            question = "can you please explain what UX design is?";
+        }
+        else if (job === 'teacher')
+        {
+            question = "what subject do you teach?";
+        }
+        else
+        {
+            question = "what do you do?";
+        }
+        console.log(name+", "+question);
+    }
+}
+interviewQuestions('teacher')('Yusuf');
