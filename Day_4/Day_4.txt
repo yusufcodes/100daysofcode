@@ -22,3 +22,9 @@ Wrote practice closure function: instead of placing if/else outside the inner fu
 Finished Lecture 68 - Closures.
 Learned about the call, apply and bind function in Lecture 69.
 Next hour: Finish current lecture, solving a real world problem using what is learned in th lecture.
+
+Hour 4
+Finished Lecture 69 'Bind, Call and Apply'
+Began Coding Challenge 7
+Finished writing answer to challenge (basic solution).
+NEXT: Go over the *basic* solution, then try the *expert* solution afterwards.

@@ -6,9 +6,7 @@
 
 //1. Function Constructor 
 
-
-
-
+//MY CODE
 var Question = function(question, answers, correctAnswer)
 {
     this.question = question;
@@ -38,7 +36,6 @@ var Question = function(question, answers, correctAnswer)
                 console.log("Incorrect Answer");
             }
         }
-
     }
 }
 
@@ -52,6 +49,8 @@ var init = (function()
 
     questionsToAsk[randomNumber].askQ()();
 })();
+
+//INSTRUCTORS CODE
 
 
 
