@@ -1,0 +1,6 @@
+Hour 1
+Went over the basic solution to the Coding Challenge 7, wrote notes on the differences between my solution and the instructor's
+solution
+Next hour: review old code, summarise issues, try *expert* challenge using new code.
+
+Hour 2
