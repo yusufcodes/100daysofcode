@@ -27,17 +27,29 @@ How to actually do it (below)*/
         }
     }
     
-    Question.prototype.checkAnswer = function()
+    Question.prototype.checkAnswer = function(answer, callback)
     {
+        var sc;
+
         if (answer === this.correctAnswer)
         {
             console.log('Correct Answer');
+            sc = callback(true);
         }
     
         else
         {
             console.log('Incorrect Answer');
+            sc= callback(false);
         }
+
+        this.displayScore(sc);
+    }
+
+    Question.prototype.displayScore = function(score)
+    {
+        console.log('Your current score is: '+score);
+        console.log('---------------');
     }
     
     var q1 = new Question('Is JavaScript the coolest programming language?', ['Yes', 'No'], 0);
@@ -45,11 +57,40 @@ How to actually do it (below)*/
     var q3 = new Question('What best describes coding?', ['Boring', 'Hard', 'Fun', 'Tedious'], 2);
     
     var questionsToAsk = [q1, q2, q3];
-    var num = Math.floor(Math.random() * questionsToAsk.length);
+
+    function score()
+    {
+        var sc = 0;
+
+        return function(correct)
+        {
+            if(correct)
+            {
+                sc++;
+            }
+
+            return sc;
+
+        }
+    }
+
+    var keepScore = score();
+
+    function init()
+    {
+        var num = Math.floor(Math.random() * questionsToAsk.length);
+        
+        questionsToAsk[num].displayQuestion();
+        
+        var answer = prompt('Please select the correct answer, write quit to finish.');
+   
+        if (answer !== 'quit')
+        {
+            questionsToAsk[num].checkAnswer(parseInt(answer), keepScore);
+            init();
+            
+        }
+    }
     
-    questionsToAsk[num].displayQuestion();
-    
-    var answer = parseInt(prompt('Please select the correct answer'));
-    
-    questionsToAsk[num].checkAnswer();222
+    init();
 })();
