@@ -1,3 +1,5 @@
+Date: Friday 31st August
+
 Hour 1
 Went over the basic solution to the Coding Challenge 7, wrote notes on the differences between my solution and the instructor's
 solution
@@ -5,3 +7,10 @@ Next hour: try *expert* challenge using new code.
 
 Hour 2
 Started working on expert solution
+Finished my solution, need to go over instructor solution
+Went over solution
+Next hour: go over solution, make sense of it
+
+Hour 3
+Made notes on the solution, understanding is better of closures
+Read MDN docs on closures to further understanding.
