@@ -1,0 +1,2 @@
+First 30 minutes
+Read freeCodeCamp article on Closures and coded examples to gain a better understanding.
