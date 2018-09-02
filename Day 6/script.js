@@ -29,5 +29,5 @@ function sayHello()
 }
 
 var sayHelloClosure = sayHello();
-sayHelloClosure;
+sayHelloClosure();
 
