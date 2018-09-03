@@ -1,0 +1,5 @@
+Date: Sunday 2nd September
+
+Hour 1
+Watched another video on Closures
+Started coding a basic to do list app
