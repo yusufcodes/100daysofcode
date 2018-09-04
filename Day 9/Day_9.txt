@@ -1,2 +1,4 @@
 Hour 1
-Added Day 9 files (continuation of the new project)
+Added Day 9 files (continuation of the new project).
+Learned about Module Patterns
+Started implementing Module Patterns into code
