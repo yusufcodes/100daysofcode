@@ -2,4 +2,9 @@ Hour 1
 Started coding the button to add an item to the list
 Learned about using 'event' as a parameter to addEventListener functions
 Started writing code in the UIController, then returned to be used in the main controller
-Next hour: continuing the app development - adding DOMStrings object to make code cleaner. 
+Next hour: continuing the app development - adding DOMStrings object to make code cleaner.
+
+Hour 2
+DOMStrings added
+Init function written
+Code added to budget controller 
