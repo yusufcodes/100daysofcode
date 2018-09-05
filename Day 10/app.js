@@ -10,14 +10,27 @@ var budgetController = (function()
 //UI Controller
 var UIController = (function() 
 {
+    var DOMstrings = 
+    {
+        inputType: '.add__type',
+        inputDescription: '.add__description',
+        inputValue: '.add__value',
+        addBtn: '.add__btn'
+    }
+
     return {
         getInput: function()
         {
             return {
-            type: document.querySelector('.add__type').value, //income or expense
-            description: document.querySelector('.add__description').value,
-            value: document.querySelector('.add__value').value
+                type: document.querySelector(DOMstrings.inputType).value, //income or expense
+                description: document.querySelector(DOMstrings.inputDescription).value,
+                value: document.querySelector(DOMstrings.inputValue).value,
             };
+        },
+
+        getDOMstrings: function()
+        {
+            return DOMstrings;
         }
     };
 
@@ -30,10 +43,12 @@ var UIController = (function()
 //How? They are passed in as parameters
 var controller = (function(budgetCtrl, UICtrl)
 {
+    var DOM = UICtrl.getDOMstrings();
+
     var ctrlAddItem = function()
     {
         // 1. Get the input data from the field
-        var input = UIController.getInput();
+        var input = UICtrl.getInput();
         console.log(input);
         // 2. Add item to the budget controller
         // 3.Add item to the UI
@@ -42,7 +57,7 @@ var controller = (function(budgetCtrl, UICtrl)
 
     }
 
-    document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
+    document.querySelector(DOM.addBtn).addEventListener('click', ctrlAddItem);
 
     document.addEventListener('keypress', function(event)
     {
