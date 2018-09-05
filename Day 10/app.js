@@ -58,7 +58,7 @@ var controller = (function(budgetCtrl, UICtrl)
     {
         // 1. Get the input data from the field
         var input = UICtrl.getInput();
-        console.log(input);
+
         // 2. Add item to the budget controller
         // 3.Add item to the UI
         // 4. Calculate the budget
