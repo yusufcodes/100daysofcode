@@ -2,6 +2,7 @@
 // Data Controller
 var budgetController = (function()
 {
+    // Expense and Income objects
     var Expense = function(id, description, value)
     {
         this.id = id;
@@ -15,27 +16,67 @@ var budgetController = (function()
         this.description = description;
         this.value = value;
     };
-    var allExpenses = [];
-    var allIncomes = [];
-    var totalExpenses = 0;
 
+    // 'Data' has 2 properties, allItems and totals.
+    // allItems: contains 2 arrays, expense and income.
+    // totals: contains 2 values, expense and income.
     var data = 
     {
         allItems:
         {
-            exp: [],
-            inc: []
+            expense: [],
+            income: []
         },
 
         totals:
         {
-            exp: 0,
-            inc: 0
+            expense: 0,
+            income: 0
         }
-    }
+    };
 
-    
+    // Global functions returned here
+    return {
 
+        // Used to add a new item
+        createExpense: function(type, desc, val)
+        {
+            var item, id;
+
+            if (data.allItems[type].length > 0)
+            {
+                // Grabs the 'id' of the last element and adds 1 to it
+                id = data.allItems[type][data.allItems[type].length - 1].id + 1;
+            }
+            else
+            {
+                // When the arrays are empty, first item must be a 0.
+                id = 0;
+            }
+            
+            //Create new item based on income or expense type
+            if (type === 'expense')
+            {
+                item = new Expense(id, desc, val);
+            }
+            else
+            {
+                item = new Income(id, desc, val);
+            }
+
+            // Push to the data structure
+            data.allItems[type].push(item);
+
+            // Return the item - is available by the controller
+            return item;
+        },
+
+        // Testing purposes: seeing our data structure
+        testing: function()
+        {
+            console.log(data);
+        }
+    };
 })();
 
 
@@ -88,10 +129,14 @@ var controller = (function(budgetCtrl, UICtrl)
 
     var ctrlAddItem = function()
     {
+        var input, newItem;
         // 1. Get the input data from the field
-        var input = UICtrl.getInput();
+        input = UICtrl.getInput();
 
         // 2. Add item to the budget controller
+        //Pass in: input.type, input.description, input.value
+        newItem = budgetCtrl.createExpense(input.type, input.description, input.value);
+
         // 3.Add item to the UI
         // 4. Calculate the budget
         // 5. Display budget on UI

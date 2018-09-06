@@ -1,3 +1,5 @@
 Date: Thursday 6th September
 
 Hour 1
+Added code to the budgetController to create the new expense and add it to the data structure
+Added code to the mainController to run the function in budgetController
