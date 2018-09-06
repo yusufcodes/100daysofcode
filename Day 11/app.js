@@ -104,6 +104,33 @@ var UIController = (function()
         getDOMstrings: function()
         {
             return DOMstrings;
+        },
+
+        addListItem: function(item, type)
+        {
+            var html; // Will contain the HTML string to insert
+            var classSelector; // Will have the expense or income class to add item to 
+
+            // Storing object properties into variables for easy retrieval
+            var id = item.id;
+            var desc = item.description;
+            var value = item.value;
+
+            // Setting HTML depending on the type that has been added, and selecting the corresponding class to add the item to
+            if (type === 'income')
+            {
+                html = '<div class="item clearfix" id="income-"'+id+'><div class="item__description">'+desc+'</div><div class="right clearfix"><div class="item__value">+ '+value+'</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+                classSelector = '.income__list'
+            }
+
+            else if (type === 'expense')
+            {
+                html = '<div class="item clearfix" id="expense-0"'+id+'><div class="item__description">'+desc+'</div><div class="right clearfix"><div class="item__value">- '+value+'</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+                classSelector = '.expenses__list';
+            }
+
+            // Adding the HTML to the list
+            document.querySelector(classSelector).insertAdjacentHTML('beforeend', html);
         }
     };
 })();
@@ -134,11 +161,20 @@ var controller = (function(budgetCtrl, UICtrl)
         input = UICtrl.getInput();
 
         // 2. Add item to the budget controller
-        //Pass in: input.type, input.description, input.value
         newItem = budgetCtrl.createExpense(input.type, input.description, input.value);
 
         // 3.Add item to the UI
+        console.log(newItem);
+
+        if (input.value !== '')
+        UICtrl.addListItem(newItem, input.type);
+
+        else
+        console.log("Item appears to be empty - nothing added!");
+        
+
         // 4. Calculate the budget
+        
         // 5. Display budget on UI
     };
 
