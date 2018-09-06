@@ -1,5 +1,12 @@
 Date: Thursday 6th September
 
-Hour 1
+Hour 1 - JS
 Added code to the budgetController to create the new expense and add it to the data structure
 Added code to the mainController to run the function in budgetController
+
+Hour 2 - JS
+Started writing code for the UI, starting with a new public method for adding an item to the UI
+Wrote the dynamic HTML and added to the page (without following instructor)
+Things instructor did differently:
+-Use %_% and then the replace method to add to the HTML string
+-Added the income and expense lists to the DOMStrings
