@@ -21,6 +21,6 @@ payBtn.addEventListener('click', function()
     console.log('Total pay: '+totalPay);
     
     // 4. Display value to the screen
-    let htmlOutput = '<p>The total pay is: £'+totalPay+'</p>';
+    let htmlOutput = '<p>The total pay is: £'+totalPay.toFixed(2)+'</p>';
     document.body.insertAdjacentHTML('beforeend', htmlOutput);
 });
