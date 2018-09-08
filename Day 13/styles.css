@@ -1,0 +1,29 @@
+/* Homepage Styles
+ ********************* */
+
+header
+{
+    text-align: center;
+}
+
+
+@media (min-width: 375px)
+{
+    #section-left, #section-right
+    {
+        float: left;
+    }
+
+    #section-left
+    {
+        width: 50%;
+    }
+
+    #section-right
+    {
+        width: 50%;
+    }
+
+}
+
+
