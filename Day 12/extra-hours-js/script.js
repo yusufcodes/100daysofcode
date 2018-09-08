@@ -21,6 +21,7 @@ payBtn.addEventListener('click', function()
     console.log('Total pay: '+totalPay);
     
     // 4. Display value to the screen
-    let htmlOutput = '<p>The total pay is: £'+totalPay.toFixed(2)+'</p>';
+    //toFixed: rounds the pay to 2 decimal places.
+    let htmlOutput = '<p>The total pay is: <b>£'+totalPay.toFixed(2)+'</b></p>';
     document.body.insertAdjacentHTML('beforeend', htmlOutput);
 });

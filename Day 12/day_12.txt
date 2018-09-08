@@ -1,0 +1,10 @@
+Hour 1
+Started working on extra hours calculator
+Wrote up basic HTML for the user to enter their hours for the month
+Added event listener to the button, problems:
+Input taken as a string - used parseInt to convert
+No validation in case no value is entered - can be added later
+
+Features to add:
+-Convert hour value (such as 1.45 to the equivalent whole number)
+-Round values
