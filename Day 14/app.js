@@ -131,6 +131,12 @@ var UIController = (function()
 
             // Adding the HTML to the list
             document.querySelector(classSelector).insertAdjacentHTML('beforeend', html);
+        },
+
+        clearFields: function()
+        {
+            // This will retrieve all the elements with the specified classes, .inputDescription and .inputValue ( these are stated in the DOMStrings object )
+            var fields = document.querySelectorAll(DOMStrings.inputDescription +', '+DOMStrings.inputValue);
         }
     };
 })();
@@ -171,7 +177,6 @@ var controller = (function(budgetCtrl, UICtrl)
 
         else
         console.log("Item appears to be empty - nothing added!");
-        
 
         // 4. Calculate the budget
         
