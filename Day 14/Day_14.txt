@@ -1,2 +1,5 @@
 Date: Sunday 9th September
 
+Hour 1
+Started with Lecture 84: Clearing Input Fields
+Current task: clearing the input fields once the user has added to the list of expenses/income
