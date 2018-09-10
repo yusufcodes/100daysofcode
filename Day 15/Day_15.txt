@@ -1,0 +1,14 @@
+Hour 1
+
+Already done:
+Addition of a new function in UIController: clearFields
+
+Completed this hour:
+Addition of querySelectorAll to get the two elements we want to clear the fields of, stored in fiels variable.
+Used the following to convert the list to an array: Array.prototype.slice.call(fields).
+Used the 'forEach' function on the Array, which sets the value of the current array to "".
+
+We have access to the following in the forEach function:
+-current: the current item in the forEach loop
+-index: the position of the array that is being worked on
+-array: the actual array we are functioning on.
