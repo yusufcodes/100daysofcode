@@ -136,7 +136,29 @@ var UIController = (function()
         clearFields: function()
         {
             // This will retrieve all the elements with the specified classes, .inputDescription and .inputValue ( these are stated in the DOMStrings object )
-            var fields = document.querySelectorAll(DOMStrings.inputDescription +', '+DOMStrings.inputValue);
+            var fields = document.querySelectorAll(DOMstrings.inputDescription +', '+DOMstrings.inputValue);
+            
+            var fieldsArr = Array.prototype.slice.call(fields);
+
+            fieldsArr.forEach(function(current, index, array) 
+            {
+                current.value = "";
+            });
+
+            fieldsArr[0].focus();
+
+            // This returns a list, which can be 'tricked' into being treated as an Array
+            // Use of method: Array.slice() - returns a copy of the array it is used on.
+            //SOLUTION:
+            /*
+            1. Use the 'call' function
+            2. Pass in the fields list
+            3. This sets the 'this' variable to fields
+            
+            // Slice is stored in the prototype of Array
+            // Array.prototype.slice <- a function, which we can use the call method on
+            // Array.prototype.slice.call(fields) <- returns an Array, even though fields is a list
+            */
         }
     };
 })();
@@ -177,7 +199,8 @@ var controller = (function(budgetCtrl, UICtrl)
 
         else
         console.log("Item appears to be empty - nothing added!");
-
+        // Clear the fields
+        UICtrl.clearFields();
         // 4. Calculate the budget
         
         // 5. Display budget on UI
