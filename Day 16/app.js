@@ -199,9 +199,10 @@ var controller = (function(budgetCtrl, UICtrl)
 
         else
         console.log("Item appears to be empty - nothing added!");
-        // Clear the fields
+        // 4. Clear the fields
         UICtrl.clearFields();
-        // 4. Calculate the budget
+        
+        // 5. Calculate the budget
         
         // 5. Display budget on UI
     };

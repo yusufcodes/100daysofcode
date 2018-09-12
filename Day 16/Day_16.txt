@@ -1,0 +1,2 @@
+Hour 1
+Started working on calculating the budget
