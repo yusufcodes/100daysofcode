@@ -1,3 +1,7 @@
 Date: Thursday 13th September
 
 Hour 1
+Started working on 'Updating the Budget'
+Read the 'value' field in using parseFloat
+Added code to add onto the 'income' and 'expense' values in the budgetController
+Added code to prevent empty expenses from being added

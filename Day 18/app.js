@@ -35,6 +35,11 @@ var budgetController = (function()
         }
     };
 
+    var calculateBudget = function()
+    {
+        var currentBudget = data.totals.income - data.totals.expense;
+    }
+
     // Global functions returned here
     return {
 
@@ -58,10 +63,12 @@ var budgetController = (function()
             if (type === 'expense')
             {
                 item = new Expense(id, desc, val);
+                data.totals.expense += val;
             }
             else
             {
                 item = new Income(id, desc, val);
+                data.totals.income += val;
             }
 
             // Push to the data structure
@@ -97,7 +104,7 @@ var UIController = (function()
             return {
             type: document.querySelector(DOMstrings.inputType).value, //income or expense
             description: document.querySelector(DOMstrings.inputDescription).value,
-            value: document.querySelector(DOMstrings.inputValue).value
+            value: parseFloat(document.querySelector(DOMstrings.inputValue).value)
             }
         },
 
@@ -182,28 +189,42 @@ var controller = (function(budgetCtrl, UICtrl)
         });
     };
 
+
+    var updateBudget = function()
+    {
+        // 1. Calculate the budget
+
+        //WHERE: budgetController
+        // -Get the current 'income' and 'expense' value
+        // -Do 'income - expense' which calculates the budget
+
+        // 2. Return the budget
+        
+        // 3. Display budget on UI
+    }
+
     var ctrlAddItem = function()
     {
         var input, newItem;
         // 1. Get the input data from the field
         input = UICtrl.getInput();
 
-        // 2. Add item to the budget controller
-        newItem = budgetCtrl.createExpense(input.type, input.description, input.value);
+        if ( (input.description !== "") && (!isNaN(input.value)) && (input.value > 0))
+        {
+            // 2. Add item to the budget controller
+            newItem = budgetCtrl.createExpense(input.type, input.description, input.value);
 
-        // 3.Add item to the UI
-        console.log(newItem);
+            // 3.Add item to the UI
+            console.log(newItem);
 
-        if (input.value !== '')
-        UICtrl.addListItem(newItem, input.type);
+            // 4. Clear the fields
+            UICtrl.clearFields();
 
-        else
-        console.log("Item appears to be empty - nothing added!");
-        // Clear the fields
-        UICtrl.clearFields();
-        // 4. Calculate the budget
-        
-        // 5. Display budget on UI
+            // 5. Calculate and update the budget
+            updateBudget();
+        }
+
+
     };
 
     return {
