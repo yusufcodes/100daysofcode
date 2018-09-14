@@ -17,6 +17,19 @@ var budgetController = (function()
         this.value = value;
     };
 
+    var calculateTotal = function(type)
+    {
+        var sum = 0;
+        data.allItems[type].forEach(function(cur)
+        {
+            sum += cur.value;
+
+        });
+
+        data.totals[type] = sum;
+    };
+
+
     // 'Data' has 2 properties, allItems and totals.
     // allItems: contains 2 arrays, expense and income.
     // totals: contains 2 values, expense and income.
@@ -32,7 +45,10 @@ var budgetController = (function()
         {
             expense: 0,
             income: 0
-        }
+        },
+
+        budget: 0,
+        percentage: -1
     };
 
     // Global functions returned here
@@ -73,21 +89,18 @@ var budgetController = (function()
 
         calculateBudget: function()
         {
-            data.totals.expense = 0;
-            data.totals.income = 0;
-            // 1. Calculate the total income and expenses
-            data.allItems['expense'].forEach(function(el)
-            {
-                data.totals.expense = 0;
-                data.totals.expense += el.value;
-            });
+            // 1.Calculate the totals
+            calculateTotal('expense');
+            calculateTotal('income');
 
-            data.allItems['income'].forEach(function(el)
-            {
-                data.totals.income += el.value;
-            });
             // 2. Calculate the budget: income - expense
+            data.budget = data.totals.income - data.totals.expense;
 
+            // 3. Calculate % of income that is spent.
+
+            data.percentage = (data.totals.expense/data.totals.income) * 100;
+            /* OLD CODE
+            // 2. Calculate the budget: income - expense
             var budget = data.totals.income - data.totals.expense;
 
             // 3. Calculate % of income that is spent.
@@ -95,7 +108,7 @@ var budgetController = (function()
 
             console.log("The budget is: "+budget);
             console.log("The percentage spent is: "+percentage);
-
+            */
         },
 
         // Testing purposes: seeing our data structure
