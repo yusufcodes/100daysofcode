@@ -35,11 +35,6 @@ var budgetController = (function()
         }
     };
 
-    var calculateBudget = function()
-    {
-        var currentBudget = data.totals.income - data.totals.expense;
-    }
-
     // Global functions returned here
     return {
 
@@ -63,12 +58,10 @@ var budgetController = (function()
             if (type === 'expense')
             {
                 item = new Expense(id, desc, val);
-                data.totals.expense += val;
             }
             else
             {
                 item = new Income(id, desc, val);
-                data.totals.income += val;
             }
 
             // Push to the data structure
@@ -76,6 +69,33 @@ var budgetController = (function()
 
             // Return the item - is available by the controller
             return item;
+        },
+
+        calculateBudget: function()
+        {
+            data.totals.expense = 0;
+            data.totals.income = 0;
+            // 1. Calculate the total income and expenses
+            data.allItems['expense'].forEach(function(el)
+            {
+                data.totals.expense = 0;
+                data.totals.expense += el.value;
+            });
+
+            data.allItems['income'].forEach(function(el)
+            {
+                data.totals.income += el.value;
+            });
+            // 2. Calculate the budget: income - expense
+
+            var budget = data.totals.income - data.totals.expense;
+
+            // 3. Calculate % of income that is spent.
+            var percentage = (data.totals.expense/data.totals.income)*100;
+
+            console.log("The budget is: "+budget);
+            console.log("The percentage spent is: "+percentage);
+
         },
 
         // Testing purposes: seeing our data structure
@@ -197,6 +217,7 @@ var controller = (function(budgetCtrl, UICtrl)
         //WHERE: budgetController
         // -Get the current 'income' and 'expense' value
         // -Do 'income - expense' which calculates the budget
+        budgetCtrl.calculateBudget();
 
         // 2. Return the budget
         
@@ -215,6 +236,7 @@ var controller = (function(budgetCtrl, UICtrl)
             newItem = budgetCtrl.createExpense(input.type, input.description, input.value);
 
             // 3.Add item to the UI
+            UICtrl.addListItem(input, input.type);
             console.log(newItem);
 
             // 4. Clear the fields
