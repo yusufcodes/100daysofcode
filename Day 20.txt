@@ -1,0 +1,2 @@
+Hour One
+Reviewed the this keyword, continued writing notes on inheritance and the prototype chain
