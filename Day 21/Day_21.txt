@@ -1,0 +1,3 @@
+Hour 1
+Wrote a function simply to return a set of values in an object 'getBudget'
+Quick code review of the budget controller - the 'data' controller

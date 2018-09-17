@@ -2,7 +2,8 @@
 // Data Controller
 var budgetController = (function()
 {
-    // Expense and Income objects
+    /* Expense and Income objects - new object created from this for each
+    income or expense */
     var Expense = function(id, description, value)
     {
         this.id = id;
@@ -17,6 +18,7 @@ var budgetController = (function()
         this.value = value;
     };
 
+    //Totals up the values of each type of income / expense
     var calculateTotal = function(type)
     {
         var sum = 0;
@@ -33,6 +35,7 @@ var budgetController = (function()
     // 'Data' has 2 properties, allItems and totals.
     // allItems: contains 2 arrays, expense and income.
     // totals: contains 2 values, expense and income.
+    //Contains a further 2 properties: budget and percentage
     var data = 
     {
         allItems:
@@ -51,7 +54,6 @@ var budgetController = (function()
         percentage: -1
     };
 
-    // Global functions returned here
     return {
 
         // Used to add a new item
@@ -59,6 +61,7 @@ var budgetController = (function()
         {
             var item, id;
 
+            //Creation of a new ID for new expense
             if (data.allItems[type].length > 0)
             {
                 // Grabs the 'id' of the last element and adds 1 to it
@@ -80,10 +83,10 @@ var budgetController = (function()
                 item = new Income(id, desc, val);
             }
 
-            // Push to the data structure
+            // Push to the data structure 'data'
             data.allItems[type].push(item);
 
-            // Return the item - is available by the controller
+            // Return the item - is available to the controller
             return item;
         },
 
@@ -97,18 +100,26 @@ var budgetController = (function()
             data.budget = data.totals.income - data.totals.expense;
 
             // 3. Calculate % of income that is spent.
+            if (data.totals.income > 0)
+            {
+                data.percentage = Math.round((data.totals.expense/data.totals.income) * 100);
+                console.log(data.percentage);
+            }
+            else
+            {
+                data.percentage = -1;
+            }
+            
+        },
 
-            data.percentage = (data.totals.expense/data.totals.income) * 100;
-            /* OLD CODE
-            // 2. Calculate the budget: income - expense
-            var budget = data.totals.income - data.totals.expense;
-
-            // 3. Calculate % of income that is spent.
-            var percentage = (data.totals.expense/data.totals.income)*100;
-
-            console.log("The budget is: "+budget);
-            console.log("The percentage spent is: "+percentage);
-            */
+        getBudget: function()
+        {
+            return {
+                budget: data.budget,
+                totalInc: data.totals.income,
+                totalExp: data.totals.expense,
+                percentage: data.percentage
+            }
         },
 
         // Testing purposes: seeing our data structure
@@ -128,10 +139,39 @@ var UIController = (function()
         inputType: '.add__type',
         inputDescription: '.add__description',
         inputValue: '.add__value',
-        addBtn: '.add__btn'
+        addBtn: '.add__btn',
+        budgetTotal: '.budget__value',
+        budgetIncome: '.budget__income--value',
+        budgetExpense: '.budget__expenses--value',
+        expensePercent: '.budget__expenses--percentage'
     }
 
+    // var displayBudget = function(obj)
+    // {
+    //     // Get the budget values from the budget controller
+
+    //     // Do the DOM manipulation
+
+    //     // Set the HTML of the income value, expense value, and expense percentage
+    //     document.querySelector(DOMStrings.budgetIncome).innerHTML = obj.totalInc;
+    //     document.querySelector(DOMStrings.budgetExpense).innerHTML = obj.totalExp;
+    //     document.querySelector(DOMStrings.expensePercent).innerHTML = obj.percentage;
+    // }
+
     return {
+        displayBudget: function(obj)
+        {
+            document.querySelector(DOMstrings.budgetTotal).textContent = '+ '+obj.budget;
+            document.querySelector(DOMstrings.budgetIncome).textContent = '+ '+obj.totalInc;
+            document.querySelector(DOMstrings.budgetExpense).textContent = '- '+obj.totalExp;
+            document.querySelector(DOMstrings.expensePercent).textContent = obj.percentage+'%';
+
+            if (obj.percentage === -1)
+            {
+                document.querySelector(DOMstrings.expensePercent).textContent = '0%';
+            }
+        },
+
         getInput: function()
         {
             return {
@@ -226,15 +266,14 @@ var controller = (function(budgetCtrl, UICtrl)
     var updateBudget = function()
     {
         // 1. Calculate the budget
-
-        //WHERE: budgetController
-        // -Get the current 'income' and 'expense' value
-        // -Do 'income - expense' which calculates the budget
         budgetCtrl.calculateBudget();
 
         // 2. Return the budget
+        var budget = budgetCtrl.getBudget();
         
         // 3. Display budget on UI
+        UICtrl.displayBudget(budget);
+
     }
 
     var ctrlAddItem = function()
