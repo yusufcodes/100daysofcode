@@ -1,3 +1,8 @@
 Hour 1
 Wrote a function simply to return a set of values in an object 'getBudget'
 Quick code review of the budget controller - the 'data' controller
+Wrote my version of manipulating the DOM, need to review the lecturer's way of producing the same outcome
+*Instructor used textContent, I went with innerHTML
+textContent: better performance as the text is not parsed as HTML, and prevents XSS attacks
+(where malicious code could be injected into the site)
+
