@@ -1,0 +1,2 @@
+Hour 1
+Started Part 2 of project planning and architecture
