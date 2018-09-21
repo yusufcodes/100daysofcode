@@ -1,0 +1,2 @@
+Hour 1
+Set up the HTML of personal website, started styling with CSS
